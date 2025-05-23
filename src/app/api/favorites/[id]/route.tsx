@@ -11,24 +11,22 @@ import { NextResponse } from "next/server";
  * - Vraća JSON odgovor s potvrdom uspjeha.
  * - Ažurira cookie s novom listom favorita.
  *
- * @param _ Request objekt (nije korišten)
+ * @param request Request objekt (nije korišten osim za tip)
  * @param params Objekt s parametrima URL-a, očekuje se id kao string
  * @returns NextResponse s JSON objektom i ažuriranim cookiejem
  */
 export async function DELETE(
-  _: Request,
+  request: Request,
   { params }: { params: { id: string } }
 ) {
-  // Parsiraj id iz parametra u broj
-  const idToRemove = parseInt(params.id, 10);
+  const { id } = params;
+  const idToRemove = parseInt(id, 10);
 
-  // Dohvati cookie store 
+  // cookies() nije async, poziva se sinhrono
   const cookieStore = await cookies();
 
-  // Iz cookieja dohvati raw JSON string ili prazni niz kao string ako nema cookieja
   const raw = cookieStore.get("favorites")?.value || "[]";
 
-  // Pokušaj parsirati JSON, ili koristi prazan niz ako je parsiranje neuspješno
   let favorites: number[] = [];
   try {
     favorites = JSON.parse(raw);
@@ -36,16 +34,13 @@ export async function DELETE(
     favorites = [];
   }
 
-  // Filteriraj niz da ukloniš ID koji treba biti izbrisan
   const updatedFavorites = favorites.filter((favId) => favId !== idToRemove);
 
-  // Kreiraj JSON response s uspjehom
   const response = NextResponse.json({ success: true });
 
-  // Postavi novi cookie s ažuriranom listom favorita
   response.cookies.set("favorites", JSON.stringify(updatedFavorites), {
-    path: "/",       // cookie vrijedi za cijelu domenu
-    httpOnly: false, // cookie dostupan i klijentskom JS-u
+    path: "/",
+    httpOnly: false,
   });
 
   return response;
