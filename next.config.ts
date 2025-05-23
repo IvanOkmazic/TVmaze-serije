@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
     domains: ["static.tvmaze.com"],
   },
   compress: true, // Gzip kompresija odgovora
-  swcMinify: true, // Brži i manji JS pomoću SWC
   reactStrictMode: true, // Pomaže u razvoju
 };
 

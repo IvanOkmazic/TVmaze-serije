@@ -11,6 +11,10 @@ type Show = {
   image?: { medium: string };
 };
 
+type SearchResult = {
+  show: Show;
+};
+
 /*
  * Komponenta SearchPage omogućuje pretraživanje serija prema upisanom upitu.
  * 
@@ -43,9 +47,9 @@ export default function SearchPage() {
     // Poziv API-ja za pretragu serija
     fetch(`https://api.tvmaze.com/search/shows?q=${encodeURIComponent(query)}`)
       .then((res) => res.json())
-      .then((data) => {
+      .then((data: SearchResult[]) => {
         // Mapiraj rezultat na listu serija (objekt show u svakom itemu)
-        const shows = data.map((item: any) => item.show);
+        const shows = data.map((item) => item.show);
         setResults(shows);
       })
       .catch(() => setResults([])) // U slučaju greške prikaži praznu listu
@@ -58,12 +62,14 @@ export default function SearchPage() {
         <BackButton />
       </div>
 
-      <h1 className="text-2xl font-bold mb-4">Rezultati pretrage za: "{query}"</h1>
+      <h1 className="text-2xl font-bold mb-4">
+        Rezultati pretrage za: &quot;{query}&quot;
+      </h1>
 
       {loading && <p>Učitavanje...</p>}
 
       {!loading && results.length === 0 && (
-        <p className="text-gray-500">Nema rezultata za "{query}".</p>
+        <p className="text-gray-500">Nema rezultata za &quot;{query}&quot;.</p>
       )}
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import BackButton from "@/components/BackButton";
+import Image from "next/image";
 
 /*
  * Tip za člana glumačke postave.
@@ -61,11 +62,13 @@ export default function GlumciPage() {
           >
             {/* Slika glumca ako postoji */}
             {member.person.image?.medium && (
-              <img
-                src={member.person.image.medium}
-                alt={member.person.name}
-                className="w-16 h-20 object-cover rounded"
-              />
+             <Image
+              src={member.person.image.medium}
+              alt={member.person.name}
+              width={64}
+              height={80}
+              className="rounded object-cover"
+            />
             )}
 
             {/* Ime glumca i uloga */}
