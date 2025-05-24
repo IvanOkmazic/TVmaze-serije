@@ -43,8 +43,3 @@ TV Series Explorer je moderna web aplikacija izrađena u Next.js (App Router), k
 ```bash
 npm install
 npm run dev
-
-```build
-npm run build
-npm start
-
