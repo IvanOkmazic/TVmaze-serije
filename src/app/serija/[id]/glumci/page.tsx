@@ -45,15 +45,12 @@ export default function GlumciPage() {
 
   return (
     <div className="p-4">
-      {/* Gumb za povratak */}
       <div className="mb-4">
         <BackButton />
       </div>
 
-      {/* Naslov stranice */}
       <h1 className="text-2xl font-bold text-center mb-6">Glumci🎭</h1>
 
-      {/* Lista glumaca */}
       <ul className="space-y-2 max-w-xl mx-auto">
         {cast.map((member) => (
           <li

@@ -56,7 +56,7 @@ export async function POST(req: Request) {
   // Spremi ažurirani niz u cookie
   response.cookies.set("favorites", JSON.stringify(favorites), {
     path: "/",       // Cookie dostupan na cijelom webu
-    httpOnly: false, // Cookie može biti dostupan klijentskom JS-u (možeš podesiti i na true ako želiš veću sigurnost)
+    httpOnly: false, 
   });
 
   return response;

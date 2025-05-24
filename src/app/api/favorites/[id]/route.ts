@@ -46,7 +46,7 @@ export async function DELETE(request: NextRequest) {
   // Postavi novi cookie "favorites" sa ažuriranom listom (pretvorenom u string)
   response.cookies.set("favorites", JSON.stringify(updatedFavorites), {
     path: "/",         // cookie je dostupan na cijelom sajtu
-    httpOnly: false,   // cookie je dostupan na client strani (ako želiš možeš postaviti na true)
+    httpOnly: false,   // cookie je dostupan na client strani 
   });
 
   // Vrati odgovor

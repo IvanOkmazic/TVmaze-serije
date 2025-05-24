@@ -50,22 +50,22 @@ export default function SearchPageClient() {
   return (
     <main className="p-4 max-w-6xl mx-auto">
       <div className="mb-4">
-        <BackButton /> {/* dugme za povratak na prethodnu stranicu */}
+        <BackButton /> 
       </div>
 
       <h1 className="text-2xl font-bold mb-4">
         Rezultati pretrage za: &quot;{query}&quot; {/* prikaz trenutačnog upita */}
       </h1>
 
-      {/* Prikaz loading poruke dok se dohvaćaju podaci */}
+      
       {loading && <p>Učitavanje...</p>}
 
-      {/* Ako nema rezultata i nije loading, prikaži poruku o nedostatku rezultata */}
+      
       {!loading && results.length === 0 && (
         <p className="text-gray-500">Nema rezultata za &quot;{query}&quot;.</p>
       )}
 
-      {/* Grid za prikaz kartica sa serijama */}
+     
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {results.map((show) => (
           <ShowCard

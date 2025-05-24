@@ -34,7 +34,6 @@ export default function RootLayout({
   return (
     <html lang="hr">
       <body className={inter.className}>
-        {/* Header s crnom pozadinom i bijelim tekstom */}
         <header className="border-b shadow-sm bg-black text-white">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
             {/* Logo koji vodi na početnu stranicu */}
@@ -51,7 +50,6 @@ export default function RootLayout({
               </div>
             </Link>
 
-            {/* Navigacijski meni */}
             <nav>
               <ul className="flex space-x-4">
                 <li>
@@ -75,7 +73,6 @@ export default function RootLayout({
           </div>
         </header>
 
-        {/* Glavni sadržaj unutar container-a sa paddingom i pozadinskom bojom */}
         <main className="container mx-auto px-4 py-6 bg-background">
           {children}
         </main>

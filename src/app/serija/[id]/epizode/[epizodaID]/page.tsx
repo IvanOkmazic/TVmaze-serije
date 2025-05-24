@@ -48,7 +48,6 @@ export default async function EpisodeDetails({
 
   return (
     <div className="p-4">
-      {/* Gumb za povratak */}
       <div className="mb-4">
         <BackButton />
       </div>
