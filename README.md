@@ -1,6 +1,6 @@
 # 📺 TV Series Explorer — Pregled projekta
 
-TV Series Explorer je moderna web aplikacija izrađena u Next.js (App Router), koja korisnicima omogućuje jednostavno pretraživanje, pregled i označavanje omiljenih TV serija korištenjem javnog TVMaze API-ja. Projekt koristi Tailwind CSS za stilizaciju, TypeScript za sigurnije tipiziranje, i omogućava proširivost (npr. uvođenje backenda s PostgreSQL-om).
+TV Maze Serije je moderna web aplikacija izrađena u Next.js (App Router), koja korisnicima omogućuje jednostavno pretraživanje, pregled i označavanje omiljenih TV serija korištenjem javnog TVMaze API-ja. Projekt koristi Tailwind CSS za stilizaciju, TypeScript za sigurnije tipiziranje, i omogućava proširivost (npr. uvođenje backenda s PostgreSQL-om).
 
 
 ## ✨ Funkcionalnosti
