@@ -49,6 +49,6 @@ export async function DELETE(request: NextRequest) {
     httpOnly: false,   // cookie je dostupan na client strani 
   });
 
-  // Vrati odgovor
+  
   return response;
 }
