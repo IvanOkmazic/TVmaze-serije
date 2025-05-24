@@ -1,15 +1,32 @@
-# 📺 TV Series Explorer
+# 📺 TV Series Explorer — Pregled projekta
 
-Ovo je aplikacija izrađena u Next.js-u koja omogućuje korisnicima da pretražuju, pregledavaju i označavaju svoje omiljene TV serije koristeći [TVMaze API](https://www.tvmaze.com/api).
+TV Series Explorer je moderna web aplikacija izrađena u Next.js (App Router), koja korisnicima omogućuje jednostavno pretraživanje, pregled i označavanje omiljenih TV serija korištenjem javnog TVMaze API-ja. Projekt koristi Tailwind CSS za stilizaciju, TypeScript za sigurnije tipiziranje, i omogućava proširivost (npr. uvođenje backenda s PostgreSQL-om).
+
 
 ## ✨ Funkcionalnosti
 
-- 🔍 Pretraga serija u realnom vremenu
-- ⭐ Prikaz najbolje ocijenjenih serija
-- ❤️ Dodavanje/uklanjanje favorita (lokalno pohranjeno)
-- 📃 Detalji o seriji (žanr, ocjena, opis, slika)
-- 🎭 Prikaz glumaca i epizoda (putem dodatnih gumbova)
-- 📦 Podrška za dinamičke rute i fallback 404 stranicu
+🔧 Ključne funkcionalnosti
+🔍 Pretraga serija
+•	Korisnici mogu pretraživati serije putem input polja.
+•	Dohvaća podatke s TVMaze API-ja na osnovu upita u realnom vremenu (npr. ?q=breaking).
+•	Rezultati se prikazuju kao grid kartica s naslovom i slikom.
+⭐ Najbolje ocijenjene serije
+•	Na početnoj stranici prikazuju se serije koje imaju dostupnu ocjenu (rating.average), sortirane od najviše prema nižoj.
+•	Serije se dohvaćaju s API-ja i keširaju se na 1 sat putem Next.js revalidate.
+❤️ Favoriti (lokalna pohrana)
+•	Korisnik može dodati/ukloniti seriju iz favorita pomoću lokalnog localStorage.
+•	Favoriti se prikazuju na zasebnoj /favorites stranici.
+📃 Detalji serije
+•	Klikom na seriju otvara se dinamička ruta /serija/[id] gdje se prikazuju:
+o	Naziv, slika, ocjena, žanrovi, sažetak
+o	Gumbi za prikaz glumaca i epizoda
+🎭 Glumci i 📺 Epizode
+•	Dodatni gumbi za dohvat i prikaz glumaca i epizoda za svaku seriju putem zasebnih komponenti.
+⚠️ Fallback 404 stranica
+•	Vlastita 404 stranica nalazi se u app/not-found.tsx i prikazuje se kada:
+o	Korisnik pokuša otvoriti nepostojeću seriju (npr. /serija/999999)
+o	Ili nepostojeću rutu (npr. /abc)
+
 
 ## 🚀 Tehnologije
 
@@ -26,3 +43,8 @@ Ovo je aplikacija izrađena u Next.js-u koja omogućuje korisnicima da pretražu
 ```bash
 npm install
 npm run dev
+
+```build
+npm run build
+npm start
+
