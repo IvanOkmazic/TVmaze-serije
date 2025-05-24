@@ -14,6 +14,7 @@
 
 import SearchInput from "@/components/SearchInput";
 import ShowsList from "@/components/ShowsList";
+import { notFound } from "next/navigation";
 
 type Show = {
   id: number;
@@ -23,21 +24,32 @@ type Show = {
 };
 
 // Dohvat serija s API-ja, filtriranje i sortiranje
-async function getShows(): Promise<Show[]> {
-  const res = await fetch("https://api.tvmaze.com/shows", {
-    next: { revalidate: 3600 }, // ISR: ponovno dohvaćanje svakih sat vremena
-  });
-  const data = await res.json();
+async function getShows(): Promise<Show[] | null> {
+  try {
+    const res = await fetch("https://api.tvmaze.com/shows", {
+      next: { revalidate: 3600 },   // ISR: ponovno dohvaćanje svakih sat vremena
+    });
 
-  // Filtriraj serije koje imaju ocjenu i sortiraj ih po ocjeni od najviše prema nižoj
-  return data
-    .filter((show: Show) => show.rating?.average)
-    .sort((a: Show, b: Show) => b.rating.average - a.rating.average);
+    if (!res.ok) return null;
+
+    const data = await res.json();
+
+    // Filtriraj serije koje imaju ocjenu i sortiraj ih po ocjeni od najviše prema nižoj
+    return data
+      .filter((show: Show) => show.rating?.average)
+      .sort((a: Show, b: Show) => b.rating.average - a.rating.average);
+  } catch {
+    return null; // Greška u fetchu → vrati null
+  }
 }
 
 // Asinkrona glavna komponenta stranice
 export default async function HomePage() {
   const shows = await getShows();
+
+  if(!shows){
+    notFound();
+  }
 
   return (
     <div>
